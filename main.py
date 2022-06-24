@@ -6,6 +6,13 @@ import numpy as np
 
 
 def show_vecs(vecs: List, lim=(-10, 10), r=0.1):
+    """将多个3d向量绘制到空间坐标系中
+
+    Args:
+        vecs (List): 向量的可迭代对象，其中每个元素包含6个数，前三个为起点，后三个为终点
+        lim (tuple): 空间坐标系的最大/最小限制
+        r (float): 线段和箭头大小的比值
+    """
     ax = plt.figure().add_subplot(projection='3d')
     ax.set_xlim3d(*lim)
     ax.set_ylim3d(*lim)
