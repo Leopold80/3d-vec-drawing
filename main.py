@@ -5,6 +5,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def vec_format(vec: np.ndarray, start=np.zeros((3, 1))):
+    """将三维向量格式化成带有起点的六维向量形式
+
+    Args:
+        vec (np.ndarray): 三维向量
+        start (np.ndarray): 起点
+
+    Returns:
+        np.ndarray: 格式化后的六维向量
+    """
+    return np.concatenate([start.flatten(), vec.flatten()])
+
+
 def show_vecs(vecs: List, lim=(-10, 10), r=0.1):
     """将多个3d向量绘制到空间坐标系中
 
@@ -28,6 +41,7 @@ def main():
     v2 = np.array([3, -4, 0]).reshape(3, 1)
     v3 = np.cross(v1, v2, 0, 0, 0)
     show_vecs([[0, 0, 0, *v1.flatten()], [0, 0, 0, *v2.flatten()], [0, 0, 0, *v3.flatten()]], (-40, 40))
+    show_vecs([vec_format(v_, start=np.array([10, 10, 0])) for v_ in (v1, v2, v3)], (-40, 40))
 
 
 if __name__ == "__main__":
