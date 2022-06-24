@@ -17,10 +17,7 @@ def show_vecs(vecs: List, lim=(-10, 10), r=0.1):
     ax.set_xlim3d(*lim)
     ax.set_ylim3d(*lim)
     ax.set_zlim3d(*lim)
-    rand_colors = [
-        "#" + "".join([hex(randint(0, 255))[2:] for _ in range(3)])
-        for _ in range(len(vecs))
-    ]
+    rand_colors = ["#{:02x}{:02x}{:02x}".format(*(randint(0, 255) for _ in range(3))) for _ in range(len(vecs))]
     for vec, color in zip(vecs, rand_colors):
         ax.quiver3D(*vec, arrow_length_ratio=r, color=color)
     plt.show()
