@@ -37,11 +37,14 @@ def show_vecs(vecs: List, lim=(-10, 10), r=0.1):
 
 
 def main():
-    v1 = np.array([5, 5, 0]).reshape(3, 1)
-    v2 = np.array([3, -4, 0]).reshape(3, 1)
-    v3 = np.cross(v1, v2, 0, 0, 0)
-    show_vecs([[0, 0, 0, *v1.flatten()], [0, 0, 0, *v2.flatten()], [0, 0, 0, *v3.flatten()]], (-40, 40))
-    show_vecs([vec_format(v_, start=np.array([10, 10, 0])) for v_ in (v1, v2, v3)], (-40, 40))
+    v1 = np.array([1, 1, 0]).reshape(3, 1)  # 向量(5, 5, 0).T
+    v2 = np.array([1, -1, 0]).reshape(3, 1)  # 向量(3, -4, 0).T
+    v3 = np.cross(v1, v2, 0, 0, 0)  # 叉乘v1 v2 得其矩
+    show_vecs(
+        [[0, 0, 0, *v1.flatten()], [0, 0, 0, *v2.flatten()], [0, 0, 0, *v3.flatten()]],  # 传入三个向量 每个元素前三个是起点 后三个是向量本身
+        (-1.0, 1.0)  # 坐标系大小
+    )
+    show_vecs([vec_format(v_, start=np.array([2, 2, 0])) for v_ in (v1, v2, v3)], (-1.0, 3.0))  # 利用vec_format函数对向量格式化，使其偏移2个单位长度
 
 
 if __name__ == "__main__":
